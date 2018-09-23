@@ -31,4 +31,4 @@ jobs:
       - checkout
       - run:
           name: Deploy Glitch
-          command: curl -sS -X POST "https://api.glitch.com/project/githubImport?token=$GLITCH_API_TOKEN&projectId=$GLITCH_PROJECT_ID&repo=sisisin-sandbox/try-glitch"
+          command: curl -sSf -X POST "https://api.glitch.com/project/githubImport?token=$GLITCH_API_TOKEN&projectId=$GLITCH_PROJECT_ID&repo=sisisin-sandbox/try-glitch"
