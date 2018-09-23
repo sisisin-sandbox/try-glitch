@@ -1,6 +1,6 @@
 readonly working_dir=$(cd "$(dirname "$0")" && pwd)
 
-curl "https://api.glitch.com/project/download/?authorization=$GLITCH_API_TOKEN&projectId=$project_id" | tar zx -C .
+curl "https://api.glitch.com/project/download/?authorization=$GLITCH_API_TOKEN&projectId=$GLITCH_PROJECT_ID" | tar zx -C .
 
 glitch_ignore=(
     .git

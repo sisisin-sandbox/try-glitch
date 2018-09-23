@@ -1,0 +1,34 @@
+version: 2.1
+
+workflows:
+  main:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
+
+executors:
+  default:
+    parameters: &node_version_parameters
+      node_version:
+        type: enum
+        enum: ["10.10.0", "8.12.0", "6.14.4"]
+
+    working_directory: ~/work/try-glitch
+    docker:
+      - image: circleci/node:<< parameters.node_version >>
+        environment:
+          LANG: ja_JP.UTF-8
+
+jobs:
+  deploy:
+    executor:
+      name: default
+      node_version: 8.12.0
+    steps:
+      - checkout
+      - run:
+          name: Deploy Glitch
+          command: curl -sS -X POST "https://api.glitch.com/project/githubImport?token=$GLITCH_API_TOKEN&projectId=$GLITCH_PROJECT_ID&repo=sisisin-sandbox/try-glitch"
